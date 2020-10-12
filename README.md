@@ -9,3 +9,5 @@ The `StashDiscountExemptCartlinesBlock` looks at the tags of a product (based on
 and if one of the tags is `discountexempt` it will temporarily remove the line from the cart so it will not be evaluated for a promotion.
 * `ApplyStashedCartLinesBlock`  
 Once the promotions have been applied, the `ApplyStashedCartLinesBlock` adds the stashed (discount exempt) lines again to the cart for normal calculation.
+
+> Note that when using variants you need to apply the `discountexempt` tag to the variant(s).
