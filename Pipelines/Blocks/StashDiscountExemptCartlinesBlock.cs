@@ -9,7 +9,7 @@ using Sitecore.Framework.Pipelines;
 
 namespace Plugin.Sample.DiscountExempt.Pipelines.Blocks
 {
-    public class StashDiscountExemptCartlines : SyncPipelineBlock<IEnumerable<Promotion>, IEnumerable<Promotion>, CommercePipelineExecutionContext>
+    public class StashDiscountExemptCartlinesBlock : SyncPipelineBlock<IEnumerable<Promotion>, IEnumerable<Promotion>, CommercePipelineExecutionContext>
     {
         public override IEnumerable<Promotion> Run(IEnumerable<Promotion> arg, CommercePipelineExecutionContext context)
         {

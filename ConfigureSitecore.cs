@@ -23,8 +23,8 @@ namespace Plugin.Sample.DiscountExempt
                         .ConfigurePipeline<IApplyPromotionsBenefitsPipeline>(
                             d =>
                             {
-                                d.Add<StashDiscountExemptCartlines>().After<EnsureFreeGiftsBlock>();
-                                d.Add<ApplyStashedCartLines>().After<ApplyFreeGiftsBlock>();
+                                d.Add<StashDiscountExemptCartlinesBlock>().After<EnsureFreeGiftsBlock>();
+                                d.Add<ApplyStashedCartLinesBlock>().After<ApplyFreeGiftsBlock>();
                             })
                         .ConfigurePipeline<IRunningPluginsPipeline>(c =>
                         {

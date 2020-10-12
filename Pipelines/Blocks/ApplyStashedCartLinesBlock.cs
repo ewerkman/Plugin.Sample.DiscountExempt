@@ -8,7 +8,7 @@ using Sitecore.Framework.Pipelines;
 
 namespace Plugin.Sample.DiscountExempt.Pipelines.Blocks
 {
-    public class ApplyStashedCartLines : SyncPipelineBlock<Boolean, Boolean, CommercePipelineExecutionContext>
+    public class ApplyStashedCartLinesBlock : SyncPipelineBlock<Boolean, Boolean, CommercePipelineExecutionContext>
     {
         public override Boolean Run(Boolean arg, CommercePipelineExecutionContext context)
         {
