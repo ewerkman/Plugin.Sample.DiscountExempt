@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Plugin.Sample.DiscountExempt.Models;
 using Sitecore.Commerce.Core;
 using Sitecore.Commerce.Plugin.Carts;
@@ -11,6 +12,13 @@ namespace Plugin.Sample.DiscountExempt.Pipelines.Blocks
 {
     public class StashDiscountExemptCartlinesBlock : SyncPipelineBlock<IEnumerable<Promotion>, IEnumerable<Promotion>, CommercePipelineExecutionContext>
     {
+        private readonly CartCommander cartCommander;
+
+        public StashDiscountExemptCartlinesBlock(CartCommander cartCommander)
+        {
+            this.cartCommander = cartCommander;
+        }
+        
         public override IEnumerable<Promotion> Run(IEnumerable<Promotion> arg, CommercePipelineExecutionContext context)
         {
             var cart = context.CommerceContext.GetObject<Cart>();
@@ -31,6 +39,10 @@ namespace Plugin.Sample.DiscountExempt.Pipelines.Blocks
                     discountExemptCartLines.Add(line);
                     cart.Lines.Remove(line);
                 }
+                
+                // Adjust subtotal according to the removed lines
+                var subTotalAdjustment = discountExemptCartLines.Sum(l => l.Totals.SubTotal.Amount);
+                cart.Totals.SubTotal.Amount -= subTotalAdjustment;
             }
 
             if (discountExemptCartLines.Any())
